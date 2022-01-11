@@ -7,8 +7,8 @@ artist_table_drop = "DROP TABLE IF EXISTS artists"
 time_table_drop = "DROP TABLE IF EXISTS time"
 
 # CREATE TABLES
-songplay_table_create = ("""CREATE TABLE IF NOT EXISTS SONGPLAYS (songplay_id int PRIMARY KEY, start_time timestamp, \
-                            user_id int, level varchar, song_id varchar, artist_id varchar, session_id int, location varchar, user_agent text);
+songplay_table_create = ("""CREATE TABLE IF NOT EXISTS SONGPLAYS (songplay_id int PRIMARY KEY, start_time time, \
+                            user_id varchar, level varchar, song_id varchar, artist_id varchar, session_id int, location varchar, user_agent text);
 """)
 
 user_table_create = ("""CREATE TABLE IF NOT EXISTS USERS (user_id varchar PRIMARY KEY, first_name varchar, \
@@ -49,7 +49,7 @@ time_table_insert = ("""INSERT INTO time (start_time, hour, day, week, month, ye
 
 # FIND SONGS
 #Implement the song_select query in sql_queries.py to find the song ID and artist ID based on the title, artist name, and duration of a song.
-song_select = ("""SELECT s.song_id, a.artist_id FROM songs s, artists a WHERE title = '%s' AND artist name = '%s'AND duration = '%s'
+song_select = ("""SELECT s.song_id, a.artist_id FROM songs s, artists a WHERE (s.title = %s AND a.artist_name = %s AND s.duration = %s)
 """)
 
 # QUERY LISTS
