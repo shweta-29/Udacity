@@ -40,23 +40,23 @@ def process_log_file(cur, filepath):
     df = df[df['page'] == 'NextSong']
 
     # convert timestamp column to datetime
-    t = pd.to_datetime(df_filter['ts'])
+    t = pd.to_datetime(df['ts'])
     
     # insert time data records
     time_data = [None]*7
     timestamp = t.dt.time
     time_data[0] = timestamp 
-    hour = df2.dt.hour
+    hour = t.dt.hour
     time_data[1] = hour
-    day = df2.dt.day
+    day = t.dt.day
     time_data[2] = day
-    week = df2.dt.week
+    week = t.dt.week
     time_data[3] = week
-    month = df2.dt.month
+    month = t.dt.month
     time_data[4] = month
-    year = df2.dt.year
+    year = t.dt.year
     time_data[5] = year
-    weekday = df2.dt.weekday
+    weekday = t.dt.weekday
     time_data[6] = weekday
     column_labels = ['start_time', 'hour', 'day', 'week', 'month', 'year', 'weekday']
     time_dict = {key:value for key, value in zip(column_labels, time_data)}
