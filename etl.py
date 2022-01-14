@@ -8,13 +8,6 @@ import glob
 import psycopg2
 import pandas as pd
 from sql_queries import *
-
-for i in range(15):
-    filepath = song_files[i]
-    df = pd.read_json(filepath,lines=True)
-    song_data = df[['song_id', 'title', 'artist_id', 'year', 'duration']]
-    song_data = song_data.values.tolist()
-    print(song_data)
     
 def process_song_file(cur, filepath):
     '''
