@@ -68,7 +68,6 @@ def process_log_file(cur, filepath):
     # load user table
     user_df = df[['userId','firstName', 'lastName','gender', 'level']]
     user_df = user_df.drop_duplicates()
-    user_df = user_df[user_df['userId'] != '']
 
     # insert user records
     for i, row in user_df.iterrows():
@@ -88,7 +87,6 @@ def process_log_file(cur, filepath):
 
         # insert songplay record
         songplay_data = (
-            index,
             row.ts, 
             row.userId, 
             row.level, 
