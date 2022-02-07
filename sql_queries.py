@@ -110,14 +110,19 @@ time_table_create = ("""CREATE TABLE IF NOT EXISTS time
 
 # STAGING TABLES
 
-staging_events_copy = ("""copy staging_events from '{}'
+staging_events_copy = ("""copy staging_events from 's3://udacity-dend/log_data'
     credentials 'aws_iam_role={}'
-    json 'auto' compupdate on region 'us-west-2';
-""".format((LOG_DATA,ARN))
+    json 'auto'
+    compupdate on 
+    region 'us-west-2';
+""".format(*config['IAM_ROLE'].values()))
         
-staging_songs_copy = ("""copy staging_songs
-                        from '{}'credentials 'aws_iam_role={}' json 'auto'
-                        compupdate on region 'us-west-2';""").format(SONG_DATA,ARN)                 
+staging_songs_copy = ("""copy staging_songs from 's3://udacity-dend/song_data'
+    credentials 'aws_iam_role={}'
+    json 'auto'
+    compupdate on 
+    region 'us-west-2';
+""".format(*config['IAM_ROLE'].values()))      
 
 
 # FINAL TABLES
